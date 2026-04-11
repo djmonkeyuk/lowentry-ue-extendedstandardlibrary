@@ -4423,7 +4423,7 @@ void ULowEntryExtendedStandardLibrary::GetClassWithName(const FString& ClassName
 	}// load class <<
 
 	{// get class >>
-		UClass* FoundClass = FindFirstObject<UClass>(*ClassName);
+		UClass* FoundClass = FindObject<UClass>(ANY_PACKAGE, *ClassName);
 		if (FoundClass != nullptr)
 		{
 			Class_ = FoundClass;
@@ -4433,7 +4433,7 @@ void ULowEntryExtendedStandardLibrary::GetClassWithName(const FString& ClassName
 	}// get class <<
 
 	{// get class through redirector >>
-		UObjectRedirector* RenamedClassRedirector = FindFirstObject<UObjectRedirector>(*ClassName);
+		UObjectRedirector* RenamedClassRedirector = FindObject<UObjectRedirector>(ANY_PACKAGE, *ClassName);
 		if ((RenamedClassRedirector != nullptr) && (RenamedClassRedirector->DestinationObject != nullptr))
 		{
 			UClass* FoundClass = CastChecked<UClass>(RenamedClassRedirector->DestinationObject);
